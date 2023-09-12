@@ -1,0 +1,7 @@
+﻿  Source.cpp
+D:\University\Course 7\МЗИ\Lab1\Lab1_1\Lab1_1\Source.cpp(13,17): warning C4244: 'initializing': conversion from 'std::streamoff' to 'long', possible loss of data
+D:\University\Course 7\МЗИ\Lab1\Lab1_1\Lab1_1\Source.cpp(67,17): warning C4244: '=': conversion from 'long' to 'float', possible loss of data
+D:\University\Course 7\МЗИ\Lab1\Lab1_1\Lab1_1\Source.cpp(72,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\University\Course 7\МЗИ\Lab1\Lab1_1\Lab1_1\Source.cpp(155,78): warning C4293: '>>': shift count negative or too big, undefined behavior
+D:\University\Course 7\МЗИ\Lab1\Lab1_1\Lab1_1\Source.cpp(51,10): warning C4101: 'b': unreferenced local variable
+  Lab1_1.vcxproj -> D:\University\Course 7\МЗИ\Lab1\Lab1_1\x64\Debug\Lab1_1.exe
