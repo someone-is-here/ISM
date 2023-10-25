@@ -13,4 +13,7 @@
     <SourceRoot Include="C:\Users\Татьяна\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgExtreme_Numerics Condition=" '$(PkgExtreme_Numerics)' == '' ">C:\Users\Татьяна\.nuget\packages\extreme.numerics\8.1.19</PkgExtreme_Numerics>
+  </PropertyGroup>
 </Project>

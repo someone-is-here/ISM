@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Extreme.Numerics" Version="8.1.19" />
+  </ItemGroup>
+
 </Project>

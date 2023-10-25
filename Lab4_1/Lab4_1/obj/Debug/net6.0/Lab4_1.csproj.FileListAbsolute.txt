@@ -13,3 +13,5 @@ D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\obj\Debug\net6.0\refint\Lab4_1.dll
 D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\obj\Debug\net6.0\Lab4_1.pdb
 D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\obj\Debug\net6.0\Lab4_1.genruntimeconfig.cache
 D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\obj\Debug\net6.0\ref\Lab4_1.dll
+D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\bin\Debug\net6.0\Extreme.Numerics.dll
+D:\University\Course 7\МЗИ\Lab4_1\Lab4_1\obj\Debug\net6.0\Lab4_1.csproj.CopyComplete

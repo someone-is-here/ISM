@@ -6,6 +6,20 @@ namespace Lab4 {
         int n; // количество столбцов
         int[][] data; // значения
 
+        public static int[] GetErrorVector(int length, int maxIndex) {
+            Random rand = new Random();
+            int[] arr = new int[length];
+
+            int index = rand.Next(0, maxIndex);
+
+            for (int i = 0; i < length; i++) {
+                arr[i] = 0;
+            }
+            arr[index] = 1;
+
+            return arr;
+        }
+
         public static int[][] MatrixCreate(int rows, int cols) {
             // Создаем матрицу, полностью инициализированную
             // значениями 0.0. Проверка входных параметров опущена.
@@ -204,21 +218,6 @@ namespace Lab4 {
             }
             return result;
         }
-        public static int[] GenerateErrorVector(int numOfOnes, int size) {
-            int[] errorVector = new int[size];
-            Random rand = new Random();
-            int calcOnes = 0;
-
-            for (int i = 0; i < size; i++) {
-                if (calcOnes < numOfOnes - 1) {
-                    int index = rand.Next(size);
-                    errorVector[index] = 1;
-                    calcOnes++;
-                }
-            }
-
-            return errorVector;
-        }
 
         public static int MatrixDeterminant(int[][] matrix) {
             int[] perm;
@@ -231,6 +230,19 @@ namespace Lab4 {
                 result *= lum[i][i];
             return result;
         }
+        public static double[][] MatrixTranform(int[][] matrix) {
+            double[][] newMatrix = new double[matrix[0].Length][];
+            for (int i = 0; i < matrix[0].Length; i++) {
+                newMatrix[i] = new double[matrix.Length];
+            }
 
+            for (int i = 0; i < newMatrix.Length; i++) {
+                for (int j = 0; j < newMatrix[0].Length; j++) {
+                    newMatrix[i][j] = matrix[j][i];
+                }
+            }
+
+            return newMatrix;
+        }
     }
 }

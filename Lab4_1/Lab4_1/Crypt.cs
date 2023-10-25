@@ -1,181 +1,151 @@
 ﻿using System.Collections;
+using System.Numerics;
 using static Lab4.Matrix;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Lab4 {
     internal class Crypt {
         private static readonly int m = 4;
-        private static readonly int n = 12;
+        private static readonly int n = 8;
         private static readonly int t = 2;
 
         private static int[][] matrixG = new int[][] {
-            new int[] { 0,1,1,0,1,0,1,0,0,1,0,0 },
-            new int[] { 0,1,1,1,1,0,0,1,1,0,0,0 },
-            new int[] { 1,1,0,1,1,0,0,0,0,0,0,1 },
-            new int[] { 1,1,1,0,1,1,0,1,0,0,1,0 },
+            new int[] { 1,0,0,0, 1,1,0 },
+            new int[] { 0,1,0,0, 1,0,1 },
+            new int[] { 0,0,1,0, 0,1,1 },
+            new int[] { 0,0,0,1, 1,1,1 },
             };
         private static int[][] matrixS = new int[][] {
-            new int[] { 1,0,0,1 },
-            new int[] { 0,1,0,1 },
+            new int[] { 1,0,0,0 },
             new int[] { 0,1,0,0 },
-            new int[] { 0,0,1,1 }
+            new int[] { 0,0,1,0 },
+            new int[] { 0,0,0,1 }
         };
         private static int[][] matrixP = new int[][] {
-            new int[] { 1,0,0,0,0,0,0,0,0,0,0,0 },
-            new int[] { 0,0,1,0,0,0,0,0,0,0,0,0 },
-            new int[] { 0,0,0,0,0,0,0,0,1,0,0,0 },
-            new int[] { 0,0,0,0,0,1,0,0,0,0,0,0 },
-            new int[] { 0,0,0,0,1,0,0,0,0,0,0,0 },
-            new int[] { 0,1,0,0,0,0,0,0,0,0,0,0 },
-            new int[] { 0,0,0,1,0,0,0,0,0,0,0,0 },
-            new int[] { 0,0,0,0,0,0,0,0,0,0,0,1 },
-            new int[] { 0,0,0,0,0,0,0,1,0,0,0,0 },
-            new int[] { 0,0,0,0,0,0,0,0,0,1,0,0 },
-            new int[] { 0,0,0,0,0,0,0,0,0,0,1,0 },
-            new int[] { 0,0,0,0,0,0,1,0,0,0,0,0 }
+            new int[] { 1,0,0,0,0,0,0 },
+            new int[] { 0,1,0,0,0,0,0 },
+            new int[] { 0,0,1,0,0,0,0 },
+            new int[] { 0,0,0,1,0,0,0 },
+            new int[] { 0,0,0,0,1,0,0 },
+            new int[] { 0,0,0,0,0,1,0 },
+            new int[] { 0,0,0,0,0,0,1 },
         };
         private static int[][] matrixGHead;
+        private static int[][] matrixH = new int[][] {
+            new int[] { 1,1,0 },
+            new int[] { 1,0,1 },
+            new int[] { 0,1,1 },
+            new int[] { 1,1,1 },
+
+            new int[] { 1,0,0 },
+            new int[] { 0,1,0 },
+            new int[] { 0,0,1 },
+            };
         private static int[][] matrixInverseP;
+        private static int[][] matrixInverseS;
         private static int[] vectorZ;
 
         private static void PrepareAllInfo() {
+
             matrixGHead = MatrixProduct(matrixS, matrixG);
             matrixGHead = MatrixProduct(matrixGHead, matrixP);
+
             for (int i = 0; i < matrixGHead.Length; i++) {
                 for (int j = 0; j < matrixGHead[i].Length; j++) {
                     if (matrixGHead[i][j] % 2 == 0) {
                         matrixGHead[i][j] = 0;
                     }
-                    Console.Write(matrixGHead[i][j] + " ");
                 }
-                Console.WriteLine();
             }
             matrixInverseP = MatrixInverse(matrixP);
+            matrixInverseS = MatrixInverse(matrixS);
         }
-        // private static readonly int k = 16; // > 16-4*2=52
-
-        /*        private static int[][] matrixA;
-                private static int[][] matrixP;
-                private static int[][] matrixInverseP;
-                private static int[][] matrixE;
-                private static int[] vectorE;*/
-
-        /*        private static int[][] matrixG = new int[][] {
-                    new int[] { 1,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1 },
-                    new int[] { 1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0 },
-                    new int[] { 0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0 },
-                    new int[] { 0,0,0,1,0,1,0,1,0,0,1,0,1,1,1,0 },
-                    new int[] { 1,0,1,0,0,1,0,0,0,0,0,0,0,1,1,0 },
-                    new int[] { 0,0,0,0,1,1,0,0,0,0,1,1,0,1,0,0 },
-                    new int[] { 1,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0 },
-                    new int[] { 1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0 },
-                    new int[] { 1,0,0,1,0,1,0,0,0,0,0,0,1,0,1,1 },
-                    new int[] { 1,0,0,0,0,1,0,0,0,1,1,1,1,1,1,0 },
-                    new int[] { 0,0,0,1,0,1,1,0,0,0,0,1,1,0,0,0 },
-                    new int[] { 0,0,0,1,0,1,0,1,0,0,1,0,1,1,1,0 },
-                    new int[] { 1,0,1,0,0,1,0,0,0,0,0,0,0,1,1,0 },
-                    new int[] { 0,0,0,0,1,1,0,0,0,0,1,1,0,1,0,0 },
-                    new int[] { 1,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0 },
-                    new int[] { 1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0 }
-                    };*/
-
-        /*        private static void PrepareMatrixes() {
-                    try {
-                        int[][] m = MatrixRandom(k, k, 0, 1);
-                        int det = MatrixDeterminant(m);
-                        while (det == 0) {
-                            m = MatrixRandom(k, k, 0, 1);
-                            det = MatrixDeterminant(m);
-                        }
-
-                        Console.WriteLine(det);
-                        for (int i = 0; i < k; i++) {
-                            for (int j = 0; j < k; j++) {
-                                Console.Write(m[i][j] + " ");
-                            }
-                            Console.WriteLine();
-                        }
-                        Console.WriteLine();
-                        matrixA = m;
-
-                        int[][] p = MatrixCreatePermutations(n, n);
-                        for (int i = 0; i < n; i++) {
-                            for (int j = 0; j < n; j++) {
-                                Console.Write(p[i][j] + " ");
-                            }
-                            Console.WriteLine();
-                        }
-                        Console.WriteLine(det);
-                        matrixP = p;
-
-                        matrixE = MatrixProduct(matrixA, matrixG);
-                        matrixE = MatrixProduct(matrixE, matrixP);
-
-                        for (int i = 0; i < n; i++) {
-                            for (int j = 0; j < n; j++) {
-                                Console.Write(matrixE[i][j] + " ");
-                            }
-                            Console.WriteLine();
-                        }
-
-                    } catch (Exception ex) {
-                        PrepareMatrixes();
-                    }
-                }*/
-        /*        public static void PrepareAllInfo() {
-                    PrepareMatrixes();
-                    vectorE = GenerateErrorVector(m - r - 1, n);
-                    matrixInverseP = MatrixInverse(matrixP);
-                }*/
         private static byte[] CryptByte(byte byteForEncryption) {
-            BitArray bitArr = new BitArray(new bool[] { true, false, true, false });
-            vectorZ = new int[] { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            BitArray bitArrayFull = new BitArray(new byte[] { byteForEncryption });
+            byte[] byteArr = new byte[(n-1)*2];
+            int index = 0;
+            for (int k = 0; k < n; k += n/2) {
+                BitArray bitArrayHalf = new BitArray(4);
+                for (int j = 0; j < n/2; j++) {
+                    bitArrayHalf[j] = bitArrayFull[j+k];
+                }
+                vectorZ = GetErrorVector(n-1, n/2);
 
-            int[] arr = new int[bitArr.Length];
-            for (int i = 0; i < bitArr.Length; i++) {
-                arr[i] = bitArr[i] ? 1 : 0;
-            }
-            int[] result = MultiplyMatrixOnVector(matrixGHead, arr);
-            for (int i = 0; i < result.Length; i++) {
-                if (result[i] % 2 == 0) {
-                    result[i] = 0;
+                int[] arr = new int[bitArrayHalf.Length];
+                for (int i = 0; i < bitArrayHalf.Length; i++) {
+                    arr[i] = bitArrayHalf[i] ? 1 : 0;
                 }
 
-                result[i] += vectorZ[i];
+                int[] result = MultiplyMatrixOnVector(matrixGHead, arr);
 
-                if (result[i] % 2 == 0) {
-                    result[i] = 0;
+                for (int i = 0; i < result.Length; i++) {
+
+                    result[i] += vectorZ[i];
+                    result[i] %= 2;
+
                 }
+
+                for (int i = index; i < index + result.Length; i++) {
+                    byteArr[i] = (byte)result[i-index];
+                }
+                index += (n - 1);
             }
-            Console.WriteLine();
-            byte[] byteArr = new byte[result.Length];
-            for (int i = 0; i < result.Length; i++) {
-                byteArr[i] = (byte)result[i];
-                Console.WriteLine(byteArr[i]);
-            }
+             
 
             return byteArr;
         }
-        private static byte[] DectyptBytes(byte[] inputBytes) {
-            int[] arr = new int[inputBytes.Length];
+        private static byte DectyptBytes(byte[] inputBytes) {
+            byte[] bytes = new byte[2];
+            bool[] boolsResult = new bool[n];
+            int index = 0;
+            for (int k = 0; k < (n - 1) * 2; k += (n - 1)) {
+                int[] arr = new int[inputBytes.Length / 2];
 
-            for (int i = 0; i < inputBytes.Length; i++) {
-                arr[i] = (int)inputBytes[i];
-            }
-
-            int[] vectorCHead = MultiplyMatrixOnVector(matrixInverseP, arr);
-            
-            Console.WriteLine();
-            for (int i = 0; i < vectorCHead.Length; i++) {
-               
-                if (vectorCHead[i] % 2 == 0) {
-                    vectorCHead[i] = 0;
+                for (int i = k; i < k+inputBytes.Length/2; i++) {
+                    arr[i-k] = (int)inputBytes[i];
                 }
-                
-                Console.Write(vectorCHead[i] + " ");
-            }
 
-            Console.WriteLine();
-            return new byte[] { };
+                int[] vectorCHead = MultiplyMatrixOnVector(matrixInverseP, arr);
+
+                for (int i = 0; i < vectorCHead.Length; i++) {
+                    vectorCHead[i] %= 2;
+                }
+
+                int[] syndrom = MultiplyMatrixOnVector(matrixH, vectorCHead);
+                for (int i = 0; i < syndrom.Length; i++) {
+                    syndrom[i] %= 2;
+
+                }
+
+                int resultIndex = -1;
+                for (int i = 0; i < matrixH.Length; i++) {
+                    int sumIndex = 0;
+                    for (int j = 0; j < matrixH[0].Length; j++) {
+                        if (syndrom[j] == matrixH[i][j]) {
+                            sumIndex++;
+                        }
+                    }
+                    if (sumIndex == matrixH[0].Length) {
+                        resultIndex = i;
+                        break;
+                    }
+                }
+                if (resultIndex != -1) {
+                    vectorCHead[resultIndex] = vectorCHead[resultIndex] == 0 ? 1 : 0;
+                }
+
+                vectorCHead = MultiplyMatrixOnVector(matrixInverseS, vectorCHead);
+               
+                for (int i = index; i < index+boolsResult.Length/2; i++) {
+                    boolsResult[i] = vectorCHead[i-index] == 1 ? true : false;
+                }
+                index += (n / 2);
+              
+            }
+            BitArray a = new BitArray(boolsResult);
+            a.CopyTo(bytes, 0);
+
+            return bytes[0];
         }
 
 
@@ -189,7 +159,6 @@ namespace Lab4 {
                             while (binaryReader.BaseStream.Position != binaryReader.BaseStream.Length) {
                                 byte[] encryptedBytes = CryptByte(binaryReader.ReadByte());
                                 binaryWriter.Write(encryptedBytes);
-                                return;
                             }
                         }
                     }
@@ -204,7 +173,7 @@ namespace Lab4 {
                     using (BinaryReader binaryReader = new BinaryReader(inputFile)) {
                         using (BinaryWriter binaryWriter = new BinaryWriter(outputFile)) {
                             byte[] inputVal;
-                            while ((inputVal = binaryReader.ReadBytes(n)).Length == n) {
+                            while ((inputVal = binaryReader.ReadBytes((n-1)*2)).Length == (n-1)*2) {
                                 binaryWriter.Write(DectyptBytes(inputVal));
                             }
                         }
