@@ -1,0 +1,15 @@
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\bin\Debug\net6.0\Lab6_1.exe
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\bin\Debug\net6.0\Lab6_1.deps.json
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\bin\Debug\net6.0\Lab6_1.runtimeconfig.json
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\bin\Debug\net6.0\Lab6_1.dll
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\bin\Debug\net6.0\Lab6_1.pdb
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.csproj.AssemblyReference.cache
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.AssemblyInfoInputs.cache
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.AssemblyInfo.cs
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.csproj.CoreCompileInputs.cache
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.dll
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\refint\Lab6_1.dll
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.pdb
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\Lab6_1.genruntimeconfig.cache
+D:\University\Course 7\МЗИ\Lab6\Lab6_1\Lab6_1\obj\Debug\net6.0\ref\Lab6_1.dll

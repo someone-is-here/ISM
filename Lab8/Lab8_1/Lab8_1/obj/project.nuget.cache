@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "jUMmQ+xMW2HwGxqhRGriYjtcn42+vNcCMqHmNSev1S6eydNsOOsXjDKY0KIqm+1tbJp+uBOGxEdRXaNwOTH1Ww==",
+  "success": true,
+  "projectFilePath": "D:\\University\\Course 7\\МЗИ\\Lab8\\Lab8_1\\Lab8_1\\Lab8_1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Татьяна\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\Татьяна\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",
+    "C:\\Users\\Татьяна\\.nuget\\packages\\skiasharp\\2.88.6\\skiasharp.2.88.6.nupkg.sha512",
+    "C:\\Users\\Татьяна\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.6\\skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",
+    "C:\\Users\\Татьяна\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.6\\skiasharp.nativeassets.win32.2.88.6.nupkg.sha512"
+  ],
+  "logs": []
+}
